@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button onclick="myapp()">
+        CLICK ME 
+    </button>
+    <script>
+        function mybutton(){
+            return (
+                <button> I am a button </button>
+            )
+        }
+    
+    
+        export default function myapp(){
+            return(
+                <div><h1>welcome to my application</h1>
+                    <mybutton/>
+                    </div>
+            )
+    
+        }
+        myapp()
+    </script>
+</body>
+</html>
