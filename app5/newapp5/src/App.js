@@ -78,15 +78,19 @@ class App extends Component {
   render() {
     return (
       <>
+        
         <div id="map"></div>
-        <div>
+    
+        <div id="services">Our services are all across Mumbai </div><br/>
+        <div id="inputs">
           <label>Start Location:</label>
-          <input type="text" id="startLocation" placeholder="Enter start location" />
+          <input type="text" class="route" id="startLocation" placeholder="Enter start location" /><br/>
           <label>End Location:</label>
-          <input type="text" id="endLocation" placeholder="Enter end location" />
+          <input type="text" class="route" id="endLocation" placeholder="Enter end location" />
           <button id="calculateButton">Calculate Route</button>
-          <p>Total Distance: <span id="totalDistance">-</span> km</p>
+          <p id="distance">Total Distance: <span id="totalDistance">-</span> km</p>
         </div>
+ 
       </>
     );
   }
