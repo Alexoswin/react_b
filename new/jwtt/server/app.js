@@ -1,20 +1,29 @@
 const express = require('express');
 const cors = require('cors');
 const app = express();
+
+const Login = require('./login.js')
+
+
 app.use(cors());
-app.use(express.json());
+app.use(express.json()); 
+
+
+
+
 
 app.get('/', (req, res) => {
   res.send('Hello World!');
 });
 
 app.post("/login", async (req, res) => {
+    const { email, password } = req.body;
+   const check = await Login.findOne({ email, password });
 
-    const { username, password } = req.body;
 
     try{
-        if (username === "admin" && password === "admin") {
-            res.status(200).json({ message: "Login successful" });
+        if (check) {
+            res.status(200).json({ message: "Login successful" , token : await Login.generateAuthToken() , userId : Login._id.toString() });
         } else {
             res.status(401).json({ message: "Invalid credentials" });
         }

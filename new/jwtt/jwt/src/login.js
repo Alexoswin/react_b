@@ -13,7 +13,7 @@ function Login(){
         navigate('/dashboard');
     };
     
-    const [username, setUsername] = useState('');
+    const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
 
@@ -22,7 +22,7 @@ function Login(){
         e.preventDefault();
         try {
             const response = await axios.post('http://localhost:8000/login', {
-                username,
+                email,
                password
             });
          
@@ -52,8 +52,8 @@ return(
           <label htmlFor="username">Username:</label>
           <input
           
-          onChange={(e) => setUsername(e.target.value)}
-          type="text" id="username" name="username" required />
+          onChange={(e) => setEmail(e.target.value)}
+          type="text" id="email" name="email" required />
                 
           <br/>
           <label htmlFor="password">Password:</label>
