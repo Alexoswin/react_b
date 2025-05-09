@@ -9,9 +9,6 @@ app.use(cors());
 app.use(express.json()); 
 
 
-
-
-
 app.get('/', (req, res) => {
   res.send('Hello World!');
 });
@@ -23,7 +20,8 @@ app.post("/login", async (req, res) => {
 
     try{
         if (check) {
-            res.status(200).json({ message: "Login successful" , token : await Login.generateAuthToken() , userId : Login._id.toString() });
+            res.status(200).json({ message: "Login successful" , token : await check.generateAuthToken(), userId : check._id.toString()
+ });
         } else {
             res.status(401).json({ message: "Invalid credentials" });
         }
