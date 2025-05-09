@@ -2,15 +2,43 @@
 
 import { useNavigate } from 'react-router-dom';
 import './App.css';
-
+import axios from 'axios';
+import { useState } from 'react';
 
 
 function Login(){
 
-const navigate = useNavigate();
-const dashboard = () => {
-    navigate('/dashboard');
-}
+    const navigate = useNavigate();
+    const dashboard = () => {
+        navigate('/dashboard');
+    };
+    
+    const [username, setUsername] = useState('');
+    const [password, setPassword] = useState('');
+
+
+    async function handleSubmit(e) {
+
+        e.preventDefault();
+        try {
+            const response = await axios.post('http://localhost:8000/login', {
+                username,
+               password
+            });
+         
+            if (response.status === 200) {
+                navigate('/dashboard');
+            } else {
+                alert('Invalid credentials');
+            }
+        } catch (error) {
+            console.error(error);
+            alert('An error occurred. Please try again later.');
+        }
+
+    }
+
+
 return(
     <>
     <div id="container">
@@ -22,14 +50,20 @@ return(
           
           <br/>
           <label htmlFor="username">Username:</label>
-          <input type="text" id="username" name="username" required />
+          <input
+          
+          onChange={(e) => setUsername(e.target.value)}
+          type="text" id="username" name="username" required />
                 
           <br/>
           <label htmlFor="password">Password:</label>
-          <input type="password" id="password" name="password" required />
+          <input
+          
+            onChange={(e) => setPassword(e.target.value)}
+          type="password" id="password" name="password" required />
                 
           <br/>
-          <button type="submit">Login</button>
+          <button onClick={handleSubmit} type="submit">Login</button>
 
         </div>
       </div>
