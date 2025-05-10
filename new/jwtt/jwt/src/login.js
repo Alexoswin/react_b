@@ -1,5 +1,5 @@
 
-
+import Cookies from 'js-cookie'
 import { useNavigate } from 'react-router-dom';
 import './App.css';
 import axios from 'axios';
@@ -27,6 +27,12 @@ function Login(){
             });
          
             if (response.status === 200) {
+
+                 const token = response.data.token;
+                 const userId = response.data.userId;
+                 
+                 Cookies.set('token', token);
+                 Cookies.set('userId', userId);
                 navigate('/dashboard');
             } else {
                 alert('Invalid credentials');
